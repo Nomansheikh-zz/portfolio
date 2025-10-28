@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+
+  body {
+    @apply bg-white dark:bg-dark text-gray-900 dark:text-gray-100;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+}
+
+/* AI-inspired background grid and subtle moving glow */
+.ai-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(600px 400px at 20% 10%, rgba(124,58,237,0.12), rgba(124,58,237,0) 60%),
+    radial-gradient(600px 400px at 80% 30%, rgba(34,211,238,0.10), rgba(34,211,238,0) 60%),
+    repeating-linear-gradient(0deg, rgba(124,58,237,0.06), rgba(124,58,237,0.06) 1px, transparent 1px, transparent 26px),
+    repeating-linear-gradient(90deg, rgba(124,58,237,0.06), rgba(124,58,237,0.06) 1px, transparent 1px, transparent 26px);
+  background-size: auto, auto, 26px 26px, 26px 26px;
+  animation: aiGridPan 60s linear infinite;
+}
+
+.dark .ai-bg {
+  background-image:
+    radial-gradient(600px 400px at 20% 10%, rgba(124,58,237,0.18), rgba(124,58,237,0) 60%),
+    radial-gradient(600px 400px at 80% 30%, rgba(34,211,238,0.16), rgba(34,211,238,0) 60%),
+    repeating-linear-gradient(0deg, rgba(124,58,237,0.09), rgba(124,58,237,0.09) 1px, transparent 1px, transparent 26px),
+    repeating-linear-gradient(90deg, rgba(124,58,237,0.09), rgba(124,58,237,0.09) 1px, transparent 1px, transparent 26px);
+}
+
+@keyframes aiGridPan {
+  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 0, 100px 0, 0 100px; }
+}
+
+/* Button sheen effect */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -50%;
+  width: 50%;
+  height: 400%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  transform: rotate(25deg);
+  animation: shine 2.8s linear infinite;
+}
+@keyframes shine {
+  0% { transform: translateX(-200%) rotate(25deg); }
+  100% { transform: translateX(400%) rotate(25deg); }
+}
